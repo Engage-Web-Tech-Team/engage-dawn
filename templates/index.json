@@ -229,6 +229,37 @@
         "button_text": "Shop Now",
         "button_url": "shopify://collections/all"
       }
+    },
+    "timeline_section_CxJkk9": {
+      "type": "timeline-section",
+      "blocks": {
+        "item_HVLH6E": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/600_c23b5468-48a0-4e14-8370-96f4767c4a2a.jpg",
+            "heading": "Title",
+            "content": "<p>Write your content here</p>",
+            "year": 2025
+          }
+        },
+        "item_Q9qAWe": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/600_c23b5468-48a0-4e14-8370-96f4767c4a2a.jpg",
+            "heading": "Title",
+            "content": "<p>Write your content here</p>",
+            "year": 2025
+          }
+        }
+      },
+      "block_order": [
+        "item_HVLH6E",
+        "item_Q9qAWe"
+      ],
+      "name": "Timeline",
+      "settings": {
+        "line_color": "#334fb4"
+      }
     }
   },
   "order": [
@@ -238,6 +269,7 @@
     "collage",
     "video",
     "multicolumn",
-    "centered_hero_dLw8MJ"
+    "centered_hero_dLw8MJ",
+    "timeline_section_CxJkk9"
   ]
 }
