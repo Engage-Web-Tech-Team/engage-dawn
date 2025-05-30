@@ -2,81 +2,74 @@
   .timeline-section {
     position: relative;
     padding: 2rem 0;
+    background: #f8f9fa;
   }
   .timeline-section__line {
     position: absolute;
-    left: 50%;
     top: 0;
     bottom: 0;
+    left: 50%;
     width: 4px;
+    margin-left: -2px;
     background-color: {{ section.settings.line_color }};
-    transform: translateX(-50%);
   }
   .timeline-item {
     position: relative;
-    margin-bottom: 3rem;
+    width: 50%;
+    padding: 1rem 2rem;
   }
-  .timeline-circle {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff;
-    border: 3px solid {{ section.settings.line_color }};
-    border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-  }
-  .circle-date {
-    font-size: 0.875rem;
-    text-align: center;
-  }
-  .timeline-item__content {
-    width: 45%;
-    padding: 1rem;
-    background: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .timeline-item--left .timeline-item__content {
-    float: left;
-    clear: both;
-    transform: translateX(-100%);
+  .timeline-item--left {
+    left: 0;
     text-align: right;
   }
-  .timeline-item--right .timeline-item__content {
-    float: right;
-    clear: both;
-    transform: translateX(100%);
+  .timeline-item--right {
+    left: 50%;
     text-align: left;
+  }
+  .timeline-item--left .timeline-content,
+  .timeline-item--right .timeline-content {
+    padding: .5rem 1rem;
+    background: #fff;
+    border-radius: .25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: relative;
+  }
+  .timeline-item--left .timeline-content {
+    margin-right: 2rem;
+  }
+  .timeline-item--right .timeline-content {
+    margin-left: 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: {{ section.settings.line_color }};
+    border: 2px solid #fff;
+    z-index: 1;
+  }
+  .timeline-item--left::before {
+    right: -6px;
+  }
+  .timeline-item--right::before {
+    left: -6px;
   }
 {% endstyle %}
 
 <section class="timeline-section">
   <div class="timeline-section__line"></div>
   {% for block in section.blocks %}
-    {% assign side = forloop.index0 | modulo: 2 %}
-    {% if side == 0 %}
-      {% assign item_class = 'timeline-item timeline-item--left' %}
-    {% else %}
-      {% assign item_class = 'timeline-item timeline-item--right' %}
-    {% endif %}
-
-    <div class="{{ item_class }}">
-      <!-- Date circle on the central line -->
-      <div class="timeline-circle">
-        <span class="circle-date">{{ block.settings.year }}</span>
-      </div>
-
-      <!-- Content box -->
-      <div class="timeline-item__content">
+    {% assign is_even = forloop.index0 | modulo: 2 %}
+    <div class="timeline-item {% if is_even == 0 %}timeline-item--left{% else %}timeline-item--right{% endif %}">
+      <div class="timeline-content">
+        <h4>{{ block.settings.year }}</h4>
         {% if block.settings.image %}
           {{ block.settings.image | image_tag: 'medium' }}
         {% endif %}
-        <h3>{{ block.settings.heading }}</h3>
+        <h5>{{ block.settings.heading }}</h5>
         <div class="rte">{{ block.settings.content }}</div>
       </div>
     </div>
@@ -91,7 +84,7 @@
       "type": "color",
       "id": "line_color",
       "label": "Timeline line color",
-      "default": "#000000"
+      "default": "#007bff"
     }
   ],
   "blocks": [
@@ -99,39 +92,14 @@
       "type": "item",
       "name": "Timeline Item",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image (optional)"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Title"
-        },
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content",
-          "default": "<p>Write your content here</p>"
-        },
-        {
-          "type": "number",
-          "id": "year",
-          "label": "Year",
-          "default": 2025
-        }
+        { "type": "image_picker", "id": "image", "label": "Image (optional)" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Title" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Write your content here</p>" },
+        { "type": "number", "id": "year", "label": "Year", "default": 2025 }
       ]
     }
   ],
   "max_blocks": 10,
-  "presets": [
-    {
-      "name": "Timeline",
-      "category": "Custom",
-      "blocks": [{ "type": "item" }]
-    }
-  ]
+  "presets": [{ "name": "Timeline", "category": "Custom", "blocks": [{ "type": "item" }] }]
 }
 {% endschema %}
