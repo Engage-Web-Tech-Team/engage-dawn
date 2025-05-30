@@ -220,16 +220,6 @@
         "padding_bottom": 36
       }
     },
-    "centered_hero_dLw8MJ": {
-      "type": "centered-hero",
-      "name": "Centered Hero",
-      "settings": {
-        "heading": "Welcome to Our Store",
-        "text": "We’re glad you’re here.",
-        "button_text": "Shop Now",
-        "button_url": "shopify://collections/all"
-      }
-    },
     "timeline_section_CxJkk9": {
       "type": "timeline-section",
       "blocks": {
@@ -245,7 +235,6 @@
         "item_Q9qAWe": {
           "type": "item",
           "settings": {
-            "image": "shopify://shop_images/600_c23b5468-48a0-4e14-8370-96f4767c4a2a.jpg",
             "heading": "Title",
             "content": "<p>Write your content here</p>",
             "year": 2025
@@ -260,6 +249,16 @@
       "settings": {
         "line_color": "#334fb4"
       }
+    },
+    "centered_hero_dLw8MJ": {
+      "type": "centered-hero",
+      "name": "Centered Hero",
+      "settings": {
+        "heading": "Welcome to Our Store",
+        "text": "We’re glad you’re here.",
+        "button_text": "Shop Now",
+        "button_url": "shopify://collections/all"
+      }
     }
   },
   "order": [
@@ -269,7 +268,7 @@
     "collage",
     "video",
     "multicolumn",
-    "centered_hero_dLw8MJ",
-    "timeline_section_CxJkk9"
+    "timeline_section_CxJkk9",
+    "centered_hero_dLw8MJ"
   ]
 }
