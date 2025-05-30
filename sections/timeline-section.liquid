@@ -67,7 +67,13 @@
       <div class="timeline-content">
         <h4>{{ block.settings.year }}</h4>
         {% if block.settings.image %}
-          {{ block.settings.image | image_tag: 'medium' }}
+          <img
+            src="{{ block.settings.image | img_url: '600x600' }}"
+            alt="{{ block.settings.heading | escape }}"
+            loading="lazy"
+            width=""
+            height=""
+          >
         {% endif %}
         <h5>{{ block.settings.heading }}</h5>
         <div class="rte">{{ block.settings.content }}</div>
