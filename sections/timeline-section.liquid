@@ -60,7 +60,7 @@
 {% endstyle %}
 
 <section class="timeline-section">
-  <div class="timeline-section__line" style="display:block"></div>
+  <div class="timeline-section__line" style="display:block !important"></div>
   {% for block in section.blocks %}
     {% assign is_even = forloop.index0 | modulo: 2 %}
     <div class="timeline-item {% if is_even == 0 %}timeline-item--left{% else %}timeline-item--right{% endif %}">
