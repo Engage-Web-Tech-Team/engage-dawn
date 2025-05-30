@@ -1,3 +1,88 @@
+{% style %}
+  .timeline-section {
+    position: relative;
+    padding: 2rem 0;
+  }
+  .timeline-section__line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: {{ section.settings.line_color }};
+    transform: translateX(-50%);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  .timeline-circle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border: 3px solid {{ section.settings.line_color }};
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  .circle-date {
+    font-size: 0.875rem;
+    text-align: center;
+  }
+  .timeline-item__content {
+    width: 45%;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .timeline-item--left .timeline-item__content {
+    float: left;
+    clear: both;
+    transform: translateX(-100%);
+    text-align: right;
+  }
+  .timeline-item--right .timeline-item__content {
+    float: right;
+    clear: both;
+    transform: translateX(100%);
+    text-align: left;
+  }
+{% endstyle %}
+
+<section class="timeline-section">
+  <div class="timeline-section__line"></div>
+  {% for block in section.blocks %}
+    {% assign side = forloop.index0 | modulo: 2 %}
+    {% if side == 0 %}
+      {% assign item_class = 'timeline-item timeline-item--left' %}
+    {% else %}
+      {% assign item_class = 'timeline-item timeline-item--right' %}
+    {% endif %}
+
+    <div class="{{ item_class }}">
+      <!-- Date circle on the central line -->
+      <div class="timeline-circle">
+        <span class="circle-date">{{ block.settings.year }}</span>
+      </div>
+
+      <!-- Content box -->
+      <div class="timeline-item__content">
+        {% if block.settings.image %}
+          {{ block.settings.image | image_tag: 'medium' }}
+        {% endif %}
+        <h3>{{ block.settings.heading }}</h3>
+        {{ block.settings.content }}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
 {% schema %}
 {
   "name": "Timeline Section",
@@ -32,10 +117,10 @@
           "default": "Write your content here"
         },
         {
-          "type": "text",
-          "id": "date",
-          "label": "Date",
-          "default": "YYYY-MM-DD"
+          "type": "number",
+          "id": "year",
+          "label": "Year",
+          "default": 2025
         }
       ]
     }
@@ -44,87 +129,9 @@
   "presets": [
     {
       "name": "Timeline",
-      "category": "Custom"
+      "category": "Custom",
+      "blocks": [{ "type": "item" }]
     }
   ]
 }
 {% endschema %}
-
-{% style %}
-  .timeline-section {
-    position: relative;
-    padding: 2rem 0;
-  }
-  .timeline-section__line {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background-color: {{ section.settings.line_color }};
-  }
-  .timeline-item {
-    position: relative;
-    width: 45%;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
-  .timeline-item--left {
-    float: left;
-    clear: both;
-    transform: translateX(-100%);
-    text-align: right;
-  }
-  .timeline-item--right {
-    float: right;
-    clear: both;
-    transform: translateX(100%);
-    text-align: left;
-  }
-  .timeline-item__circle {
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    background-color: {{ section.settings.line_color }};
-    transform: translateX(-50%);
-  }
-  .timeline-item__content {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-{% endstyle %}
-
-<section class="timeline-section">
-  <div class="timeline-section__line"></div>
-  {% for block in section.blocks %}
-    {% assign side = forloop.index0 | modulo: 2 | times: 1 | default: 0 %}
-    {% if side == 0 %}
-      {% assign classes = 'timeline-item timeline-item--left' %}
-    {% else %}
-      {% assign classes = 'timeline-item timeline-item--right' %}
-    {% endif %}
-    <div class="{{ classes }}">
-      <div class="timeline-item__circle"></div>
-      <div class="timeline-item__content">
-        {% if block.settings.image %}
-          <img
-            src="{{ block.settings.image | img_url: 'medium' }}"
-            width=""
-            height=""
-            alt="{{ block.settings.heading }}"
-          >
-        {% endif %}
-        <h3>{{ block.settings.heading }}</h3>
-        <p>
-          <small>{{ block.settings.date }}</small>
-        </p>
-        {{ block.settings.content }}
-      </div>
-    </div>
-  {% endfor %}
-</section>
