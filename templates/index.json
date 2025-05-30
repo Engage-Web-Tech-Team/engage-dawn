@@ -195,16 +195,6 @@
         "padding_bottom": 36
       }
     },
-    "centered_hero_dLw8MJ": {
-      "type": "centered-hero",
-      "name": "Centered Hero",
-      "settings": {
-        "heading": "Welcome to Our Store",
-        "text": "We’re glad you’re here.",
-        "button_text": "Shop Now",
-        "button_url": "shopify://collections/all"
-      }
-    },
     "timeline_section_CxJkk9": {
       "type": "timeline-section",
       "blocks": {
@@ -242,7 +232,6 @@
     "collage",
     "video",
     "featured_blog_JWGbbt",
-    "centered_hero_dLw8MJ",
     "timeline_section_CxJkk9"
   ]
 }
