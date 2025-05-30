@@ -9,51 +9,58 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "slideshow_GCMhHJ": {
+      "type": "slideshow",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slide_JLAyCa": {
+          "type": "slide",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
+            "image_overlay_opacity": 0,
+            "heading": "<strong>Freelance Writing for Business Diploma Course</strong>",
+            "heading_size": "hxl",
+            "subheading": "Are you looking to earn money writing from home?",
+            "button_label": "Find out more",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-5"
           }
         },
-        "text": {
-          "type": "text",
+        "slide_Amc7qV": {
+          "type": "slide",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "image_overlay_opacity": 0,
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
           }
         }
       },
       "block_order": [
-        "heading",
-        "text",
-        "button"
+        "slide_JLAyCa",
+        "slide_Amc7qV"
       ],
+      "name": "t:sections.slideshow.presets.name",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
         "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
       }
     },
     "rich_text": {
@@ -220,13 +227,22 @@
         "padding_bottom": 36
       }
     },
+    "centered_hero_dLw8MJ": {
+      "type": "centered-hero",
+      "name": "Centered Hero",
+      "settings": {
+        "heading": "Welcome to Our Store",
+        "text": "We’re glad you’re here.",
+        "button_text": "Shop Now",
+        "button_url": "shopify://collections/all"
+      }
+    },
     "timeline_section_CxJkk9": {
       "type": "timeline-section",
       "blocks": {
         "item_HVLH6E": {
           "type": "item",
           "settings": {
-            "image": "shopify://shop_images/600_c23b5468-48a0-4e14-8370-96f4767c4a2a.jpg",
             "heading": "Title",
             "content": "<p>Write your content here</p>",
             "year": 2025
@@ -249,26 +265,16 @@
       "settings": {
         "line_color": "#334fb4"
       }
-    },
-    "centered_hero_dLw8MJ": {
-      "type": "centered-hero",
-      "name": "Centered Hero",
-      "settings": {
-        "heading": "Welcome to Our Store",
-        "text": "We’re glad you’re here.",
-        "button_text": "Shop Now",
-        "button_url": "shopify://collections/all"
-      }
     }
   },
   "order": [
-    "image_banner",
+    "slideshow_GCMhHJ",
     "rich_text",
     "featured_collection",
     "collage",
     "video",
     "multicolumn",
-    "timeline_section_CxJkk9",
-    "centered_hero_dLw8MJ"
+    "centered_hero_dLw8MJ",
+    "timeline_section_CxJkk9"
   ]
 }
