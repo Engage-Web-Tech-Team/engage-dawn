@@ -9,47 +9,62 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-article",
+    "multicolumn_ANf3NY": {
+      "type": "multicolumn",
       "blocks": {
-        "featured_image": {
-          "type": "featured_image",
+        "column_c37aKh": {
+          "type": "column",
           "settings": {
-            "image_height": "adapt"
+            "image": "{{ article.image }}",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
           }
         },
-        "title": {
-          "type": "title",
+        "column_3TDRfX": {
+          "type": "column",
           "settings": {
-            "blog_show_date": true,
-            "blog_show_author": false
+            "title": "{{ article.title }}",
+            "text": "<p></p>{{ article.content }}",
+            "link_label": "",
+            "link": ""
           }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        },
-        "content": {
-          "type": "content",
-          "settings": {}
         }
       },
       "block_order": [
-        "featured_image",
-        "title",
-        "share",
-        "content"
+        "column_c37aKh",
+        "column_3TDRfX"
       ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Multicolumn",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-3",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "main": {
+      "type": "main-article",
       "custom_css": [
         "{background: black; color: white;}",
-        "a,p,h1, button {color: white !important;}"
+        "a,p,h1,button {color: white !important;}"
       ],
       "settings": {}
     }
   },
   "order": [
+    "multicolumn_ANf3NY",
     "main"
   ]
 }
