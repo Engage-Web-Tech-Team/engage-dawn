@@ -149,7 +149,7 @@ window.addEventListener('load', function () {
       ScrollTrigger.create({
         trigger: '.ew-3d-section',
         start: 'top top',
-        end: '+=150%',
+        end: '+=200%',
         pin: true,
         scrub: true
       });
@@ -178,9 +178,15 @@ window.addEventListener('load', function () {
 
       // Overlay shifts left
       gsap.to('.ew-3d-overlay', {
-        xPercent: -50,
-        scrollTrigger: scrollOptions
-      });
+  x: '-30vw', // better than xPercent
+  scrollTrigger: {
+    trigger: '.ew-3d-section',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true
+  }
+});
+
 
       // Background color changes
       gsap.to('.ew-3d-section', {
