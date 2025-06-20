@@ -63,6 +63,10 @@
     opacity: 0;
   }
 
+  .ew-3d-wrapper {
+    overflow:visible;
+  }
+
   .ew-3d-overlay h1,
   .ew-3d-overlay a {
     transform: translateY(20px);
@@ -74,15 +78,16 @@
   }
 </style>
 
-<div class="ew-3d-section">
-  <canvas id="three-canvas"></canvas>
-  <div class="ew-3d-overlay">
-    <h1>Your Title</h1>
-    <a href="#">Button</a>
+<div class="ew-3d-wrapper">
+  <div class="ew-3d-section">
+    <canvas id="three-canvas"></canvas>
+    <div class="ew-3d-overlay">
+      <h1>Your Title</h1>
+      <a href="#">Button</a>
+    </div>
   </div>
+  <div class="scroll-trigger-marker" style="height: 200vh;"></div>
 </div>
-
-<div class="scroll-trigger-marker"  style="height: 200vh; background: transparent;"></div>
 
 <script>
 window.addEventListener('load', function () {
@@ -141,50 +146,47 @@ window.addEventListener('load', function () {
       // === GSAP ScrollTrigger Animations ===
       gsap.registerPlugin(ScrollTrigger);
 
-      // Model grows on scroll
+      // Pin the section while scrolling
+      ScrollTrigger.create({
+        trigger: '.ew-3d-section',
+        start: 'top top',
+        end: '+=150%',
+        pin: true,
+        scrub: true
+      });
+
+      // Scroll-triggered animations (same range as pinned section)
+      const scrollOptions = {
+        trigger: '.ew-3d-section',
+        start: 'top top',
+        end: '+=150%',
+        scrub: true
+      };
+
+      // Model scales up
       gsap.to(model.scale, {
         x: 1,
         y: 1,
         z: 1,
-        scrollTrigger: {
-          trigger: '.ew-3d-section',
-          start: 'top bottom',
-          end: 'top top',
-          scrub: true
-        }
+        scrollTrigger: scrollOptions
       });
 
-      // Background color change
-      gsap.to('.ew-3d-section', {
-        backgroundColor: "#F4F4F4",
-        scrollTrigger: {
-          trigger: '.scroll-trigger-marker',
-          start: 'top center',
-          end: 'bottom center',
-          scrub: true
-        }
-      });
-
-      // Model shifts to right
+      // Model shifts right
       gsap.to(model.position, {
         x: 1.5,
-        scrollTrigger: {
-          trigger: '.scroll-trigger-marker',
-          start: 'top center',
-          end: 'bottom center',
-          scrub: true
-        }
+        scrollTrigger: scrollOptions
       });
 
-      // Overlay shifts to left
+      // Overlay shifts left
       gsap.to('.ew-3d-overlay', {
         xPercent: -50,
-        scrollTrigger: {
-          trigger: '.scroll-trigger-marker',
-          start: 'top center', 
-          end: 'bottom center',
-          scrub: true
-        }
+        scrollTrigger: scrollOptions
+      });
+
+      // Background color changes
+      gsap.to('.ew-3d-section', {
+        backgroundColor: "#F4F4F4",
+        scrollTrigger: scrollOptions
       });
 
       // Loop rotation
