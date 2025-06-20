@@ -68,43 +68,48 @@
     }
   }
 
-  .ew-gsap-section .slide {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    backface-visibility: hidden;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.ew-gsap-section .slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .ew-gsap-section .slide img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    z-index: 1;
-    position: relative;
-  }
+.ew-gsap-section .slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
-  .ew-gsap-section .slide .title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: clamp(2rem, 5vw, 5rem);
-    text-align: center;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    pointer-events: none;
-  }
+.ew-gsap-section .slide-content img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  z-index: 1;
+  position: relative;
+}
+
+.ew-gsap-section .slide-content .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 5vw, 5rem);
+  text-align: center;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  pointer-events: none;
+}
 
   /* Gradient backgrounds per slide index (only shown if no image is set) */
   .gradient-1 { background: linear-gradient(135deg, #2ecc71, #27ae60); }
@@ -127,20 +132,23 @@
     {% assign text = section.settings[text_key] %}
 
     <div class="slide {% unless image_obj %}gradient-{{ i }}{% endunless %}">
-      {% if image_obj != blank %}
-        {{ image_obj | image_url: width: 800 | image_tag:
-          class: '',
-          alt: text,
-          width: image_obj.width,
-          height: image_obj.height,
-          sizes: '(min-width: 768px) 420px, 100vw',
-          widths: '300, 420, 600, 800'
-        }}
-      {% endif %}
-      <div class="title">{{ text | truncate: 25, '' }}</div>
+      <div class="slide-content">
+        {% if image_obj %}
+          {{ image_obj | image_url: width: 800 | image_tag:
+            class: '',
+            alt: text,
+            width: image_obj.width,
+            height: image_obj.height,
+            sizes: '(min-width: 768px) 420px, 100vw',
+            widths: '300, 420, 600, 800'
+          }}
+        {% endif %}
+        <div class="title">{{ text | truncate: 25, '' }}</div>
+      </div>
     </div>
   {% endfor %}
 </div>
+
 
 
   </div>
