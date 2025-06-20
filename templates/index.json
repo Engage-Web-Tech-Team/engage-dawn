@@ -65,19 +65,6 @@
         "accessibility_info": "Slideshow about our brand"
       }
     },
-    "ew_gsap_section_PVFRBm": {
-      "type": "ew-gsap-section",
-      "name": "GSAP Scroll Slider",
-      "settings": {
-        "section_bg_color": "#414040",
-        "slide_1": "Slide 1",
-        "slide_2": "Slide 2",
-        "slide_3": "Slide 3",
-        "slide_4": "Slide 4",
-        "slide_5": "Slide 5",
-        "slide_6": "Slide 6"
-      }
-    },
     "rich_text": {
       "type": "rich-text",
       "blocks": {
@@ -240,7 +227,6 @@
   },
   "order": [
     "slideshow_GCMhHJ",
-    "ew_gsap_section_PVFRBm",
     "rich_text",
     "featured_collection",
     "collage",
