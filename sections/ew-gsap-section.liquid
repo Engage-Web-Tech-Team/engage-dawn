@@ -38,6 +38,7 @@
 <style>
   .ew-gsap-section {
     background-color: {{ section.settings.section_bg_color }};
+    transition: background 1.5s ease-in-out;
   }
 
   .ew-gsap-section * {
@@ -168,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const slides = gsap.utils.toArray('.ew-gsap-section .slide');
   const transitionTime = 2;
 
-  // Background gradients (shifted by 1)
+  // Gradient backgrounds (shifted by 1)
   const bgGradients = [
     'linear-gradient(135deg, #9b59b6, #8e44ad)', // for slide 1
     'linear-gradient(135deg, #3498db, #2980b9)', // for slide 2
@@ -178,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'linear-gradient(135deg, #2ecc71, #27ae60)'  // for slide 6
   ];
 
-  // Set initial background
+  // Set initial background to match slide 1’s offset (i.e., gradient for slide 2)
   gsap.set('.ew-gsap-section', {
     background: bgGradients[0]
   });
@@ -189,22 +190,25 @@ document.addEventListener('DOMContentLoaded', function () {
       start: "top top",
       end: "+=" + (slides.length * 200),
       pin: true,
-      scrub: 1.5,
+      scrub: 1.5
     }
   });
 
-  // Initial setup for slides
+  // Initial setup
   gsap.set(slides, {
     rotationX: (i) => (i ? -90 : 0),
     opacity: (i) => (i ? 0 : 1),
     transformOrigin: 'center center -150px'
   });
 
+  // Animate through each slide
   slides.forEach((slide, i) => {
     const nextSlide = slides[i + 1];
     if (!nextSlide) return;
 
-    // Rotate + fade out current slide
+    const nextBgIndex = (i + 1) % bgGradients.length;
+
+    // Slide out: rotate and fade
     tl.to(slide, {
       rotationX: 90,
       opacity: 0,
@@ -213,14 +217,14 @@ document.addEventListener('DOMContentLoaded', function () {
       onComplete: () => gsap.set(slide, { rotationX: -90 })
     });
 
-    // Transition background gradient
+    // Change background gradient smoothly (offset)
     tl.to('.ew-gsap-section', {
-      background: bgGradients[i],
+      background: bgGradients[nextBgIndex],
       duration: transitionTime,
       ease: "power2.inOut"
-    }, "<"); // sync timing with fade/rotate
+    }, "<");
 
-    // Rotate + fade in next slide
+    // Slide in: rotate and fade in next
     tl.to(nextSlide, {
       rotationX: 0,
       opacity: 1,
@@ -229,8 +233,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }, "<");
   });
 
-  // Hold the last slide briefly
+  // Hold last slide
   tl.to({}, { duration: 1 });
 });
 </script>
+
 
