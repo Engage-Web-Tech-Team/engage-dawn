@@ -104,17 +104,14 @@
   <div class="wrapper center">
     <div class="slider">
       {% for i in (1..6) %}
-        {% assign img = section.settings["slide_" | append: i | append: "_img"] %}
-        {% assign text = section.settings["slide_" | append: i | append: "_text"] %}
+        {% capture img_key %}slide_{{ i }}_img{% endcapture %}
+        {% capture text_key %}slide_{{ i }}_text{% endcapture %}
+        {% assign img = section.settings[img_key] %}
+        {% assign text = section.settings[text_key] %}
         {% if img %}
           <div class="slide">
-            <img
-              src="{{ img | image_url: '600x600' }}"
-              alt="Slide {{ i }} "
-              width="{{ image.width }}"
-              height="{{ image.height }}"
-            >
-            <div class="title">{{ text }}</div>
+            <img src="{{ img | image_url: '600x600' }}" alt="Slide {{ i }}">
+            <div class="title">{{ text | truncate: 25, '' }}</div>
           </div>
         {% endif %}
       {% endfor %}
