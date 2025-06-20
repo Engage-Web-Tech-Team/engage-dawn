@@ -157,54 +157,46 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-      console.warn('GSAP or ScrollTrigger not loaded.');
-      return;
-    }
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const slides = gsap.utils.toArray('.ew-gsap-section .slide');
-const delay = 1.25;
-
-const tl = gsap.timeline({
-  defaults: {
-    ease: 'power2.inOut',
-    transformOrigin: 'center center -150px'
-  },
-  scrollTrigger: {
-    trigger: '.ew-gsap-section .wrapper',
-    pin: true,
-    scrub: 1.5
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    console.warn('GSAP or ScrollTrigger not loaded.');
+    return;
   }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const slides = gsap.utils.toArray('.ew-gsap-section .slide');
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.ew-gsap-section .wrapper',
+      start: "top top",
+      end: "+=" + (slides.length * 200), // extend scroll range
+      pin: true,
+      scrub: 1.5, // smoothness of scroll
+    }
+  });
+
+  gsap.set(slides, {
+    rotationX: (i) => (i ? -90 : 0),
+    transformOrigin: "center center -150px"
+  });
+
+  slides.forEach((slide, i) => {
+    const nextSlide = slides[i + 1];
+    if (!nextSlide) return;
+
+    tl.to(slide, {
+      rotationX: 90,
+      duration: 2,
+      ease: "expo.inOut",
+      onComplete: () => gsap.set(slide, { rotationX: -90 })
+    }).to(nextSlide, {
+      rotationX: 0,
+      duration: 2,
+      ease: "expo.inOut"
+    }, "<");
+  });
+
+  tl.to({}, { duration: 1 }); // tiny delay at the end
 });
 
-
-
-    gsap.set(slides, {
-      rotationX: (i) => (i ? -90 : 0),
-      transformOrigin: 'center center -150px',
-    });
-
-    slides.forEach((slide, i) => {
-      const nextSlide = slides[i + 1];
-      if (!nextSlide) return;
-      tl.to(
-        slide,
-        {
-          rotationX: 90,
-          onComplete: () => gsap.set(slide, { rotationX: -90 }),
-        },
-        '+=' + delay
-      ).to(
-        nextSlide,
-        {
-          rotationX: 0,
-        },
-        '<'
-      );
-    });
-
-    tl.to({}, { duration: delay });
-  });
 </script>
