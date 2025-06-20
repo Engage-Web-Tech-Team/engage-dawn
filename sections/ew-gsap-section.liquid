@@ -74,31 +74,39 @@
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 1.2rem;
     backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .ew-gsap-section .slide img {
     max-width: 100%;
-    max-height: 70%;
+    max-height: 100%;
     object-fit: contain;
+    z-index: 1;
+    position: relative;
   }
 
   .ew-gsap-section .slide .title {
-    margin-top: 10px;
-    color: #fff;
-    font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 5vw, 5rem);
+    text-align: center;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    pointer-events: none;
   }
 
-  /* Gradient backgrounds per slide index */
+  /* Gradient backgrounds per slide index (only shown if no image is set) */
   .gradient-1 { background: linear-gradient(135deg, #2ecc71, #27ae60); }
   .gradient-2 { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
   .gradient-3 { background: linear-gradient(135deg, #3498db, #2980b9); }
@@ -106,6 +114,7 @@
   .gradient-5 { background: linear-gradient(135deg, #34495e, #2c3e50); }
   .gradient-6 { background: linear-gradient(135deg, #e74c3c, #c0392b); }
 </style>
+
 
 <div class="ew-gsap-section">
   <div class="panel"></div>
