@@ -69,7 +69,7 @@
       "type": "ew-gsap-section",
       "name": "GSAP Image Slider",
       "settings": {
-        "section_bg_color": "#ffffff",
+        "section_bg_color": "#242833",
         "slide_1_img": "shopify://shop_images/gabew-logo.png",
         "slide_1_text": "Slide 1",
         "slide_2_img": "shopify://shop_images/gabew-logo-white.png",
