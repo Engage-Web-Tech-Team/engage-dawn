@@ -9,62 +9,6 @@
  */
 {
   "sections": {
-    "slideshow_GCMhHJ": {
-      "type": "slideshow",
-      "blocks": {
-        "slide_JLAyCa": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/900_59705168-0ba3-474f-8b20-51c8109375e1.jpg",
-            "image_overlay_opacity": 30,
-            "heading": "<strong>Freelance Writing for Business Diploma Course</strong>",
-            "heading_size": "h0",
-            "subheading": "Are you looking to earn money writing from home?",
-            "button_label": "Find out more",
-            "link": "shopify://products/clothing-item-1",
-            "button_style_secondary": false,
-            "show_text_box": true,
-            "box_align": "middle-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-3"
-          }
-        },
-        "slide_Amc7qV": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/800_67fafdd0-238c-4761-b4f5-b36326656ad9.jpg",
-            "image_overlay_opacity": 0,
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": true,
-            "box_align": "middle-right",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": ""
-          }
-        }
-      },
-      "block_order": [
-        "slide_JLAyCa",
-        "slide_Amc7qV"
-      ],
-      "name": "t:sections.slideshow.presets.name",
-      "settings": {
-        "layout": "full_bleed",
-        "slide_height": "medium",
-        "slider_visual": "counter",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "ambient",
-        "show_text_below": true,
-        "accessibility_info": "Slideshow about our brand"
-      }
-    },
     "ew_gsap_section_FLxkWD": {
       "type": "ew-gsap-section",
       "name": "GSAP Image Slider",
@@ -269,7 +213,6 @@
     }
   },
   "order": [
-    "slideshow_GCMhHJ",
     "ew_gsap_section_FLxkWD",
     "rich_text",
     "featured_collection",
