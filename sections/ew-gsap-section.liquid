@@ -168,6 +168,21 @@ document.addEventListener('DOMContentLoaded', function () {
   const slides = gsap.utils.toArray('.ew-gsap-section .slide');
   const transitionTime = 2;
 
+  // Background gradients (shifted by 1)
+  const bgGradients = [
+    'linear-gradient(135deg, #9b59b6, #8e44ad)', // for slide 1
+    'linear-gradient(135deg, #3498db, #2980b9)', // for slide 2
+    'linear-gradient(135deg, #f39c12, #e67e22)', // for slide 3
+    'linear-gradient(135deg, #34495e, #2c3e50)', // for slide 4
+    'linear-gradient(135deg, #e74c3c, #c0392b)', // for slide 5
+    'linear-gradient(135deg, #2ecc71, #27ae60)'  // for slide 6
+  ];
+
+  // Set initial background
+  gsap.set('.ew-gsap-section', {
+    background: bgGradients[0]
+  });
+
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.ew-gsap-section .wrapper',
@@ -178,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Initial setup
+  // Initial setup for slides
   gsap.set(slides, {
     rotationX: (i) => (i ? -90 : 0),
     opacity: (i) => (i ? 0 : 1),
@@ -189,27 +204,33 @@ document.addEventListener('DOMContentLoaded', function () {
     const nextSlide = slides[i + 1];
     if (!nextSlide) return;
 
-    // Current slide exits: rotate + fade out
+    // Rotate + fade out current slide
     tl.to(slide, {
       rotationX: 90,
       opacity: 0,
       duration: transitionTime,
       ease: "expo.inOut",
       onComplete: () => gsap.set(slide, { rotationX: -90 })
-    })
+    });
 
-    // Next slide enters: rotate + fade in
-    .to(nextSlide, {
+    // Transition background gradient
+    tl.to('.ew-gsap-section', {
+      background: bgGradients[i],
+      duration: transitionTime,
+      ease: "power2.inOut"
+    }, "<"); // sync timing with fade/rotate
+
+    // Rotate + fade in next slide
+    tl.to(nextSlide, {
       rotationX: 0,
       opacity: 1,
       duration: transitionTime,
       ease: "expo.inOut"
-    }, "<"); // sync the two
+    }, "<");
   });
 
-  // Hold final slide
+  // Hold the last slide briefly
   tl.to({}, { duration: 1 });
 });
-
-
 </script>
+
