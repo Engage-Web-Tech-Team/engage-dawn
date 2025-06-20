@@ -97,6 +97,14 @@
     font-weight: bold;
     text-shadow: 0 2px 4px rgba(0,0,0,0.4);
   }
+
+  /* Gradient backgrounds per slide index */
+  .gradient-1 { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+  .gradient-2 { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+  .gradient-3 { background: linear-gradient(135deg, #3498db, #2980b9); }
+  .gradient-4 { background: linear-gradient(135deg, #f39c12, #e67e22); }
+  .gradient-5 { background: linear-gradient(135deg, #34495e, #2c3e50); }
+  .gradient-6 { background: linear-gradient(135deg, #e74c3c, #c0392b); }
 </style>
 
 <div class="ew-gsap-section">
@@ -108,12 +116,12 @@
         {% capture text_key %}slide_{{ i }}_text{% endcapture %}
         {% assign img = section.settings[img_key] %}
         {% assign text = section.settings[text_key] %}
-        {% if img %}
-          <div class="slide">
-            <img src="{{ img | image_url: '600x600' }}" alt="Slide {{ i }}">
-            <div class="title">{{ text | truncate: 25, '' }}</div>
-          </div>
-        {% endif %}
+        <div class="slide gradient-{{ i }}">
+          {% if img %}
+            <img src="{{ img | image_url: '600x600' }}" alt="{{ text | escape }}">
+          {% endif %}
+          <div class="title">{{ text | truncate: 25, '' }}</div>
+        </div>
       {% endfor %}
     </div>
   </div>
