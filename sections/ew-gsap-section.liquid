@@ -2,6 +2,12 @@
 {
   "name": "GSAP Scroll Slider",
   "settings": [
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
     { "type": "text", "id": "slide_1", "label": "Slide 1 Text", "default": "Slide 1" },
     { "type": "text", "id": "slide_2", "label": "Slide 2 Text", "default": "Slide 2" },
     { "type": "text", "id": "slide_3", "label": "Slide 3 Text", "default": "Slide 3" },
@@ -18,6 +24,10 @@
 {% endschema %}
 
 <style>
+  .ew-gsap-section {
+    background-color: {{ section.settings.section_bg_color }};
+  }
+
   .ew-gsap-section * {
     margin: 0;
     padding: 0;
@@ -27,6 +37,9 @@
   .ew-gsap-section .wrapper {
     width: 100%;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .ew-gsap-section .slider {
@@ -34,12 +47,11 @@
     height: 300px;
     position: relative;
     perspective: 500px;
-    margin: 0 auto;
   }
 
   .ew-gsap-section .slider:after {
     position: absolute;
-    content: '';
+    content: "";
     top: -1rem;
     bottom: -1rem;
     right: -1rem;
@@ -60,25 +72,33 @@
     align-items: center;
     justify-content: center;
     color: white;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border-radius: 10px;
   }
 
   .gradient-green {
-    background: #2ecc71;
+    background: linear-gradient(135deg, #32CD32, #228B22);
   }
+
   .gradient-purple {
-    background: #9b59b6;
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
   }
+
   .gradient-blue {
-    background: #3498db;
+    background: linear-gradient(135deg, #3498db, #2980b9);
   }
+
   .gradient-orange {
-    background: #e67e22;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
   }
+
   .gradient-blue-dark {
-    background: #34495e;
+    background: linear-gradient(135deg, #34495e, #2c3e50);
   }
+
   .gradient-red {
-    background: #e74c3c;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
   }
 
   .ew-gsap-section .panel {
@@ -108,7 +128,6 @@
       return;
     }
 
-    console.clear();
     gsap.registerPlugin(ScrollTrigger);
 
     const slides = gsap.utils.toArray('.ew-gsap-section .slide');
@@ -121,11 +140,8 @@
       },
       scrollTrigger: {
         trigger: '.ew-gsap-section .wrapper',
-        start: 'top top',
-        end: '+=' + (slides.length - 1) * 50 + '%',
         pin: true,
         scrub: true,
-        markers: true,
       },
     });
 
