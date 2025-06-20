@@ -373,6 +373,17 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    {% assign use_gsap = false %}
+
+    {% for section in content_for_layout %}
+      {% if section contains 'ew-gsap-section' %}
+        {% assign use_gsap = true %}
+      {% endif %}
+    {% endfor %}
+
+    {% if use_gsap %}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    {% endif %}
   </body>
 </html>

@@ -1,0 +1,158 @@
+{% schema %}
+{
+  "name": "GSAP Scroll Slider",
+  "settings": [
+    { "type": "text", "id": "slide_1", "label": "Slide 1 Text", "default": "Slide 1" },
+    { "type": "text", "id": "slide_2", "label": "Slide 2 Text", "default": "Slide 2" },
+    { "type": "text", "id": "slide_3", "label": "Slide 3 Text", "default": "Slide 3" },
+    { "type": "text", "id": "slide_4", "label": "Slide 4 Text", "default": "Slide 4" },
+    { "type": "text", "id": "slide_5", "label": "Slide 5 Text", "default": "Slide 5" },
+    { "type": "text", "id": "slide_6", "label": "Slide 6 Text", "default": "Slide 6" }
+  ],
+  "presets": [
+    {
+      "name": "GSAP Scroll Slider"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .ew-gsap-section * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .ew-gsap-section .wrapper {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .ew-gsap-section .slider {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    perspective: 500px;
+    margin: 0 auto;
+  }
+
+  .ew-gsap-section .slider:after {
+    position: absolute;
+    content: '';
+    top: -1rem;
+    bottom: -1rem;
+    right: -1rem;
+    left: -1rem;
+    outline: 1.5px dashed #ccc;
+    border-radius: 10px;
+  }
+
+  .ew-gsap-section .slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.5rem;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .gradient-green {
+    background: #2ecc71;
+  }
+  .gradient-purple {
+    background: #9b59b6;
+  }
+  .gradient-blue {
+    background: #3498db;
+  }
+  .gradient-orange {
+    background: #e67e22;
+  }
+  .gradient-blue-dark {
+    background: #34495e;
+  }
+  .gradient-red {
+    background: #e74c3c;
+  }
+
+  .ew-gsap-section .panel {
+    height: 50vh;
+  }
+</style>
+
+<div class="ew-gsap-section">
+  <div class="panel"></div>
+  <div class="wrapper center">
+    <div class="slider">
+      <div class="slide center gradient-green">{{ section.settings.slide_1 }}</div>
+      <div class="slide center gradient-purple">{{ section.settings.slide_2 }}</div>
+      <div class="slide center gradient-blue">{{ section.settings.slide_3 }}</div>
+      <div class="slide center gradient-orange">{{ section.settings.slide_4 }}</div>
+      <div class="slide center gradient-blue-dark">{{ section.settings.slide_5 }}</div>
+      <div class="slide center gradient-red">{{ section.settings.slide_6 }}</div>
+    </div>
+  </div>
+  <div class="panel"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      console.warn('GSAP or ScrollTrigger not loaded.');
+      return;
+    }
+
+    console.clear();
+    gsap.registerPlugin(ScrollTrigger);
+
+    const slides = gsap.utils.toArray('.ew-gsap-section .slide');
+    const delay = 0.5;
+
+    const tl = gsap.timeline({
+      defaults: {
+        ease: 'power1.inOut',
+        transformOrigin: 'center center -150px',
+      },
+      scrollTrigger: {
+        trigger: '.ew-gsap-section .wrapper',
+        start: 'top top',
+        end: '+=' + (slides.length - 1) * 50 + '%',
+        pin: true,
+        scrub: true,
+        markers: true,
+      },
+    });
+
+    gsap.set(slides, {
+      rotationX: (i) => (i ? -90 : 0),
+      transformOrigin: 'center center -150px',
+    });
+
+    slides.forEach((slide, i) => {
+      const nextSlide = slides[i + 1];
+      if (!nextSlide) return;
+      tl.to(
+        slide,
+        {
+          rotationX: 90,
+          onComplete: () => gsap.set(slide, { rotationX: -90 }),
+        },
+        '+=' + delay
+      ).to(
+        nextSlide,
+        {
+          rotationX: 0,
+        },
+        '<'
+      );
+    });
+
+    tl.to({}, { duration: delay });
+  });
+</script>
