@@ -69,6 +69,7 @@
       "type": "ew-gsap-section",
       "name": "GSAP Scroll Slider",
       "settings": {
+        "section_bg_color": "#363636",
         "slide_1": "Slide 1",
         "slide_2": "Slide 2",
         "slide_3": "Slide 3",
