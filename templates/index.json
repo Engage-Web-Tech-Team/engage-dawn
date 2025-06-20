@@ -238,9 +238,17 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "ew_3d_section_JrPULz": {
+      "type": "ew-3d-section",
+      "name": "3D Hero Section",
+      "settings": {
+        "section_bg_color": "#000000"
+      }
     }
   },
   "order": [
+    "ew_3d_section_JrPULz",
     "ew_gsap_section_FLxkWD",
     "rich_text",
     "featured_collection",
