@@ -393,20 +393,11 @@
 
 {% if use_3d %}
   <!-- Three.js r149 (global scope) -->
-  <script src="https://unpkg.com/three@0.149.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.148.0/build/three.min.js"></script>
 
   <!-- GLTFLoader (global, non-module) -->
-  <script src="https://unpkg.com/three@0.149.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://unpkg.com/three@0.148.0/examples/js/loaders/GLTFLoader.js"></script>
 
-  <!-- Attach GLTFLoader to global THREE object manually -->
-  <script>
-    if (typeof THREE !== 'undefined' && typeof GLTFLoader !== 'undefined') {
-      THREE.GLTFLoader = GLTFLoader;
-      console.log("✅ GLTFLoader assigned to THREE");
-    } else {
-      console.warn("⚠️ GLTFLoader not available globally");
-    }
-  </script>
 {% endif %}
 
 
