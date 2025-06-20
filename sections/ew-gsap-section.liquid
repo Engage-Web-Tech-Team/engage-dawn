@@ -167,17 +167,18 @@
     const slides = gsap.utils.toArray('.ew-gsap-section .slide');
     const delay = 0.5;
 
-    const tl = gsap.timeline({
-      defaults: {
-        ease: 'power1.inOut',
-        transformOrigin: 'center center -150px',
-      },
-      scrollTrigger: {
-        trigger: '.ew-gsap-section .wrapper',
-        pin: true,
-        scrub: true,
-      },
-    });
+const tl = gsap.timeline({
+  defaults: {
+    ease: 'sine.inOut',
+    transformOrigin: 'center center -150px',
+  },
+  scrollTrigger: {
+    trigger: '.ew-gsap-section .wrapper',
+    pin: true,
+    scrub: 0.7, // smoother scroll feel
+  },
+});
+
 
     gsap.set(slides, {
       rotationX: (i) => (i ? -90 : 0),
