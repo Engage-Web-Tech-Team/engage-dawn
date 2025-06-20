@@ -156,7 +156,7 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.warn('GSAP or ScrollTrigger not loaded.');
     return;
@@ -165,38 +165,50 @@
   gsap.registerPlugin(ScrollTrigger);
 
   const slides = gsap.utils.toArray('.ew-gsap-section .slide');
+  const transitionTime = 2;
+
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.ew-gsap-section .wrapper',
       start: "top top",
-      end: "+=" + (slides.length * 200), // extend scroll range
+      end: "+=" + (slides.length * 200),
       pin: true,
-      scrub: 1.5, // smoothness of scroll
+      scrub: 1.5,
     }
   });
 
+  // Initial setup
   gsap.set(slides, {
     rotationX: (i) => (i ? -90 : 0),
-    transformOrigin: "center center -150px"
+    opacity: (i) => (i ? 0 : 1),
+    transformOrigin: 'center center -150px'
   });
 
   slides.forEach((slide, i) => {
     const nextSlide = slides[i + 1];
     if (!nextSlide) return;
 
+    // Current slide exits: rotate + fade out
     tl.to(slide, {
       rotationX: 90,
-      duration: 2,
+      opacity: 0,
+      duration: transitionTime,
       ease: "expo.inOut",
       onComplete: () => gsap.set(slide, { rotationX: -90 })
-    }).to(nextSlide, {
+    })
+
+    // Next slide enters: rotate + fade in
+    .to(nextSlide, {
       rotationX: 0,
-      duration: 2,
+      opacity: 1,
+      duration: transitionTime,
       ease: "expo.inOut"
-    }, "<");
+    }, "<"); // sync the two
   });
 
-  tl.to({}, { duration: 1 }); // tiny delay at the end
+  // Hold final slide
+  tl.to({}, { duration: 1 });
 });
+
 
 </script>
