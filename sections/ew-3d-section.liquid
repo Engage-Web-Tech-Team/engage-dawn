@@ -23,6 +23,7 @@
     height: 100vh;
     position: relative;
     background-color: {{ section.settings.section_bg_color }};
+    transition: background 0.5s ease;
     overflow: hidden;
   }
 
@@ -40,6 +41,7 @@
     text-align: center;
     z-index: 2;
     color: white;
+    transition: transform 0.5s ease;
   }
 
   .ew-3d-overlay h1 {
@@ -62,11 +64,14 @@
   }
 
   .ew-3d-overlay h1,
-.ew-3d-overlay a {
-  transform: translateY(20px);
-  opacity: 0;
-}
+  .ew-3d-overlay a {
+    transform: translateY(20px);
+    opacity: 0;
+  }
 
+  .scroll-trigger-marker {
+    height: 200vh;
+  }
 </style>
 
 <div class="ew-3d-section">
@@ -77,6 +82,7 @@
   </div>
 </div>
 
+<div class="scroll-trigger-marker"></div>
 
 <script>
 window.addEventListener('load', function () {
@@ -107,10 +113,11 @@ window.addEventListener('load', function () {
       scene.add(model);
 
       model.rotation.y = Math.PI;
-      model.scale.set(0.5, 0.5, 0.5); // Start small
+      model.scale.set(0.5, 0.5, 0.5);
+      model.position.set(0, 0, 0);
 
-      // === Entrance Animation ===
-      gsap.fromTo(model.rotation, 
+      // === Entrance Animations ===
+      gsap.fromTo(model.rotation,
         { y: model.rotation.y - 0.5 },
         { y: model.rotation.y, duration: 2, ease: 'power3.out' }
       );
@@ -131,9 +138,10 @@ window.addEventListener('load', function () {
         delay: 2
       });
 
-      // === Scroll-based Scaling Animation ===
+      // === GSAP ScrollTrigger Animations ===
       gsap.registerPlugin(ScrollTrigger);
 
+      // Model grows on scroll
       gsap.to(model.scale, {
         x: 1,
         y: 1,
@@ -146,18 +154,40 @@ window.addEventListener('load', function () {
         }
       });
 
-      // === Scroll-based Background Color Change ===
+      // Background color change
       gsap.to('.ew-3d-section', {
         backgroundColor: "#111111",
         scrollTrigger: {
-          trigger: '.ew-3d-section',
-          start: 'top bottom',
-          end: 'top top',
+          trigger: '.scroll-trigger-marker',
+          start: 'top center',
+          end: 'bottom center',
           scrub: true
         }
       });
 
-      // === Continuous Rotation Animation ===
+      // Model shifts to right
+      gsap.to(model.position, {
+        x: 1.5,
+        scrollTrigger: {
+          trigger: '.scroll-trigger-marker',
+          start: 'top center',
+          end: 'bottom center',
+          scrub: true
+        }
+      });
+
+      // Overlay shifts to left
+      gsap.to('.ew-3d-overlay', {
+        xPercent: -50,
+        scrollTrigger: {
+          trigger: '.scroll-trigger-marker',
+          start: 'top center',
+          end: 'bottom center',
+          scrub: true
+        }
+      });
+
+      // Loop rotation
       function animate() {
         requestAnimationFrame(animate);
         model.rotation.y += 0.002;
@@ -178,7 +208,3 @@ window.addEventListener('load', function () {
   });
 });
 </script>
-
-
-
-
