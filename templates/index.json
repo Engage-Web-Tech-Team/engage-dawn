@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "ew_3d_section_qDFQXc": {
+      "type": "ew-3d-section",
+      "name": "3D Hero Section",
+      "settings": {
+        "section_bg_color": "#000000"
+      }
+    },
     "ew_gsap_section_FLxkWD": {
       "type": "ew-gsap-section",
       "name": "GSAP Image Slider",
@@ -238,17 +245,10 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "ew_3d_section_JrPULz": {
-      "type": "ew-3d-section",
-      "name": "3D Hero Section",
-      "settings": {
-        "section_bg_color": "#000000"
-      }
     }
   },
   "order": [
-    "ew_3d_section_JrPULz",
+    "ew_3d_section_qDFQXc",
     "ew_gsap_section_FLxkWD",
     "rich_text",
     "featured_collection",
