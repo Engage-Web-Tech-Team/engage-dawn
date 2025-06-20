@@ -9,7 +9,7 @@
  */
 {
   "sections": {
-    "ew_3d_section_qDFQXc": {
+    "ew_3d_section_YwFPWJ": {
       "type": "ew-3d-section",
       "name": "3D Hero Section",
       "settings": {
@@ -248,7 +248,7 @@
     }
   },
   "order": [
-    "ew_3d_section_qDFQXc",
+    "ew_3d_section_YwFPWJ",
     "ew_gsap_section_FLxkWD",
     "rich_text",
     "featured_collection",
