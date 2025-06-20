@@ -400,15 +400,13 @@
     {% endif %}
 =======
 {% assign use_gsap = false %}
-{% assign use_three = false %}
+
 
 {% for section in content_for_layout %}
   {% if section contains 'ew-gsap-section' %}
     {% assign use_gsap = true %}
   {% endif %}
-  {% if section contains 'ew-3d-section' %}
-    {% assign use_three = true %}
-  {% endif %}
+
 {% endfor %}
 
 {% if use_gsap %}
@@ -416,9 +414,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 {% endif %}
 
-{% if use_three %}
-  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js" id="threejs-lib"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/loaders/GLTFLoader.js" id="three-gltf-loader"></script>
+{% assign use_3d = false %}
+
+{% for section in content_for_layout %}
+  {% if section contains 'ew-3d-section' %}
+    {% assign use_3d = true %}
+  {% endif %}
+{% endfor %}
+
+{% if use_3d %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r149/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r149/examples/js/loaders/GLTFLoader.js"></script>
 {% endif %}
 
 >>>>>>> 2bd0b8a5dba02b775e31bad34cf6fbb2372b4a3a
