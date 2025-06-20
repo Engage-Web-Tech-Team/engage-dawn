@@ -156,7 +156,7 @@
     background-color: #f1f1f1;
   }
 
-  .slide-overlay {
+.slide-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -164,15 +164,38 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  z-index: 2;
   text-align: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.slide-overlay .title {
+  color: white;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 6vw, 7rem);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
   pointer-events: none;
 }
 
 .slide-overlay .slide-button {
-  pointer-events: auto; /* So the button is clickable */
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1rem;
+  pointer-events: auto; /* make it clickable */
+  transition: background 0.3s ease;
 }
+
+.slide-overlay .slide-button:hover {
+  background-color: white;
+}
+
 
 </style>
 
