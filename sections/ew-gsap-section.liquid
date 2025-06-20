@@ -155,6 +155,25 @@
   .slide-button:hover {
     background-color: #f1f1f1;
   }
+
+  .slide-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+}
+
+.slide-overlay .slide-button {
+  pointer-events: auto; /* So the button is clickable */
+}
+
 </style>
 
 <div class="ew-gsap-section">
@@ -172,22 +191,25 @@
         {% assign cta = section.settings[cta_key] %}
 
         <div class="slide">
-          <div class="slide-content">
-            {% if image_obj %}
-              {{ image_obj | image_url: width: 800 | image_tag:
-                class: '',
-                alt: text,
-                width: image_obj.width,
-                height: image_obj.height,
-                sizes: '(min-width: 768px) 420px, 100vw',
-                widths: '300, 420, 600, 800'
-              }}
-            {% endif %}
-            <div class="title">{{ text | truncate: 25, '' }}</div>
-            {% if link and cta %}
-              <a href="{{ link }}" class="slide-button">{{ cta }}</a>
-            {% endif %}
-          </div>
+<div class="slide-content">
+  {% if image_obj %}
+    {{ image_obj | image_url: width: 800 | image_tag:
+      class: '',
+      alt: text,
+      width: image_obj.width,
+      height: image_obj.height,
+      sizes: '(min-width: 768px) 420px, 100vw',
+      widths: '300, 420, 600, 800'
+    }}
+  {% endif %}
+  <div class="slide-overlay">
+    <div class="title">{{ text | truncate: 25, '' }}</div>
+    {% if link and cta %}
+      <a href="{{ link }}" class="slide-button">{{ cta }}</a>
+    {% endif %}
+  </div>
+</div>
+
         </div>
       {% endfor %}
     </div>
