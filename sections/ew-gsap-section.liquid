@@ -158,18 +158,7 @@
 </div>
 
 <script>
-  window.ewGsapGradients = [
-    "linear-gradient(135deg, {{ section.settings.slide_1_color_1 }}, {{ section.settings.slide_1_color_2 }})",
-    "linear-gradient(135deg, {{ section.settings.slide_2_color_1 }}, {{ section.settings.slide_2_color_2 }})",
-    "linear-gradient(135deg, {{ section.settings.slide_3_color_1 }}, {{ section.settings.slide_3_color_2 }})",
-    "linear-gradient(135deg, {{ section.settings.slide_4_color_1 }}, {{ section.settings.slide_4_color_2 }})",
-    "linear-gradient(135deg, {{ section.settings.slide_5_color_1 }}, {{ section.settings.slide_5_color_2 }})",
-    "linear-gradient(135deg, {{ section.settings.slide_6_color_1 }}, {{ section.settings.slide_6_color_2 }})"
-  ];
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function () {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.warn('GSAP or ScrollTrigger not loaded.');
     return;
@@ -179,11 +168,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const slides = gsap.utils.toArray('.ew-gsap-section .slide');
   const transitionTime = 2;
-  const bgGradients = window.ewGsapGradients || [];
 
-  // Initial background (uses slide 2's gradient for slide 1 display)
+  // Matching gradient background per slide (no shifting)
+  const bgGradients = [
+    'linear-gradient(135deg, #2ecc71, #27ae60)', // Slide 1
+    'linear-gradient(135deg, #9b59b6, #8e44ad)', // Slide 2
+    'linear-gradient(135deg, #3498db, #2980b9)', // Slide 3
+    'linear-gradient(135deg, #f39c12, #e67e22)', // Slide 4
+    'linear-gradient(135deg, #34495e, #2c3e50)', // Slide 5
+    'linear-gradient(135deg, #e74c3c, #c0392b)'  // Slide 6
+  ];
+
+  // Set initial background to match first slide
   gsap.set('.ew-gsap-section', {
-    background: bgGradients[1 % bgGradients.length]
+    background: bgGradients[0]
   });
 
   const tl = gsap.timeline({
@@ -196,19 +194,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // Initial setup
   gsap.set(slides, {
     rotationX: (i) => (i ? -90 : 0),
     opacity: (i) => (i ? 0 : 1),
     transformOrigin: 'center center -150px'
   });
 
+  // Animate through slides
   slides.forEach((slide, i) => {
     const nextSlide = slides[i + 1];
     if (!nextSlide) return;
 
-    // Shifted index: i+1 for background (slide 1 shows bg of slide 2)
-    const shiftedIndex = (i + 1) % bgGradients.length;
-
+    // Slide out
     tl.to(slide, {
       rotationX: 90,
       opacity: 0,
@@ -217,20 +215,23 @@ document.addEventListener('DOMContentLoaded', function () {
       onComplete: () => gsap.set(slide, { rotationX: -90 })
     });
 
-    tl.to('.ew-gsap-section', {
-      background: bgGradients[shiftedIndex],
-      duration: transitionTime,
-      ease: "power2.inOut"
-    }, "<");
-
+    // Slide in
     tl.to(nextSlide, {
       rotationX: 0,
       opacity: 1,
       duration: transitionTime,
       ease: "expo.inOut"
-    }, "<");
+    });
+
+    // Match background to the incoming slide (no offset now)
+    tl.to('.ew-gsap-section', {
+      background: bgGradients[i + 1],
+      duration: transitionTime,
+      ease: "power2.inOut"
+    });
   });
 
-  tl.to({}, { duration: 1 });
+  tl.to({}, { duration: 1 }); // Pause at end
 });
+
 </script>
