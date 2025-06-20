@@ -70,12 +70,13 @@
 </style>
 
 <div class="ew-3d-section">
-  <canvas id="three-canvas" class="ew-3d-canvas"></canvas>
+  <canvas id="three-canvas"></canvas>
   <div class="ew-3d-overlay">
-    <h1>3D Hero</h1>
-    <a href="#shop">Explore Now</a>
+    <h1>Your Title</h1>
+    <a href="#">Button</a>
   </div>
 </div>
+
 
 <script>
 window.addEventListener('load', function () {
@@ -88,7 +89,6 @@ window.addEventListener('load', function () {
     return;
   }
 
-  // Your original model + GSAP animation code here
   const canvas = document.getElementById('three-canvas');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
@@ -100,6 +100,26 @@ window.addEventListener('load', function () {
   const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
   scene.add(ambientLight);
 
+  // OrbitControls
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableZoom = false;
+  controls.enablePan = false;
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 1;
+  controls.enabled = false;
+
+  canvas.addEventListener('pointerdown', () => {
+    controls.enabled = true;
+    controls.autoRotate = false;
+  });
+
+  canvas.addEventListener('pointerup', () => {
+    controls.enabled = false;
+    controls.autoRotate = true;
+  });
+
   // Load model
   const loader = new THREE.GLTFLoader();
   loader.load(
@@ -109,9 +129,10 @@ window.addEventListener('load', function () {
       scene.add(model);
 
       model.rotation.y = Math.PI;
+      model.scale.set(0.5, 0.5, 0.5); // Initial small scale
 
       // Animate entrance
-      gsap.fromTo(model.rotation, 
+      gsap.fromTo(model.rotation,
         { y: model.rotation.y - 0.5 },
         { y: model.rotation.y, duration: 2, ease: 'power3.out' }
       );
@@ -132,10 +153,35 @@ window.addEventListener('load', function () {
         delay: 2
       });
 
+      // ScrollTrigger animations
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.to(model.scale, {
+        x: 1,
+        y: 1,
+        z: 1,
+        scrollTrigger: {
+          trigger: '.ew-3d-section',
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true
+        }
+      });
+
+      gsap.to('.ew-3d-section', {
+        backgroundColor: "#111111",
+        scrollTrigger: {
+          trigger: '.ew-3d-section',
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true
+        }
+      });
+
       // Animate loop
       function animate() {
         requestAnimationFrame(animate);
-        model.rotation.y += 0.002;
+        controls.update();
         renderer.render(scene, camera);
       }
       animate();
@@ -146,7 +192,7 @@ window.addEventListener('load', function () {
     }
   );
 
-  // Responsive canvas
+  // Responsive
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -154,5 +200,6 @@ window.addEventListener('load', function () {
   });
 });
 </script>
+
 
 
