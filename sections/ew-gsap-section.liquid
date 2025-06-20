@@ -157,15 +157,14 @@
   <div class="panel"></div>
 </div>
 
-<!-- Dynamic gradient array from user settings -->
 <script>
   window.ewGsapGradients = [
+    "linear-gradient(135deg, {{ section.settings.slide_1_color_1 }}, {{ section.settings.slide_1_color_2 }})",
     "linear-gradient(135deg, {{ section.settings.slide_2_color_1 }}, {{ section.settings.slide_2_color_2 }})",
     "linear-gradient(135deg, {{ section.settings.slide_3_color_1 }}, {{ section.settings.slide_3_color_2 }})",
     "linear-gradient(135deg, {{ section.settings.slide_4_color_1 }}, {{ section.settings.slide_4_color_2 }})",
     "linear-gradient(135deg, {{ section.settings.slide_5_color_1 }}, {{ section.settings.slide_5_color_2 }})",
-    "linear-gradient(135deg, {{ section.settings.slide_6_color_1 }}, {{ section.settings.slide_6_color_2 }})",
-    "linear-gradient(135deg, {{ section.settings.slide_1_color_1 }}, {{ section.settings.slide_1_color_2 }})"
+    "linear-gradient(135deg, {{ section.settings.slide_6_color_1 }}, {{ section.settings.slide_6_color_2 }})"
   ];
 </script>
 
@@ -182,9 +181,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const transitionTime = 2;
   const bgGradients = window.ewGsapGradients || [];
 
-  // Initial background
+  // Initial background (uses slide 2's gradient for slide 1 display)
   gsap.set('.ew-gsap-section', {
-    background: bgGradients[0]
+    background: bgGradients[1 % bgGradients.length]
   });
 
   const tl = gsap.timeline({
@@ -206,7 +205,9 @@ document.addEventListener('DOMContentLoaded', function () {
   slides.forEach((slide, i) => {
     const nextSlide = slides[i + 1];
     if (!nextSlide) return;
-    const nextBgIndex = (i + 1) % bgGradients.length;
+
+    // Shifted index: i+1 for background (slide 1 shows bg of slide 2)
+    const shiftedIndex = (i + 1) % bgGradients.length;
 
     tl.to(slide, {
       rotationX: 90,
@@ -217,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     tl.to('.ew-gsap-section', {
-      background: bgGradients[nextBgIndex],
+      background: bgGradients[shiftedIndex],
       duration: transitionTime,
       ease: "power2.inOut"
     }, "<");
