@@ -11,21 +11,33 @@
 
     { "type": "image_picker", "id": "slide_1_img", "label": "Slide 1 Image" },
     { "type": "text", "id": "slide_1_text", "label": "Slide 1 Title", "default": "Slide 1" },
+    { "type": "color", "id": "slide_1_color_1", "label": "Slide 1 Gradient Color 1", "default": "#2ecc71" },
+    { "type": "color", "id": "slide_1_color_2", "label": "Slide 1 Gradient Color 2", "default": "#27ae60" },
 
     { "type": "image_picker", "id": "slide_2_img", "label": "Slide 2 Image" },
     { "type": "text", "id": "slide_2_text", "label": "Slide 2 Title", "default": "Slide 2" },
+    { "type": "color", "id": "slide_2_color_1", "label": "Slide 2 Gradient Color 1", "default": "#9b59b6" },
+    { "type": "color", "id": "slide_2_color_2", "label": "Slide 2 Gradient Color 2", "default": "#8e44ad" },
 
     { "type": "image_picker", "id": "slide_3_img", "label": "Slide 3 Image" },
     { "type": "text", "id": "slide_3_text", "label": "Slide 3 Title", "default": "Slide 3" },
+    { "type": "color", "id": "slide_3_color_1", "label": "Slide 3 Gradient Color 1", "default": "#3498db" },
+    { "type": "color", "id": "slide_3_color_2", "label": "Slide 3 Gradient Color 2", "default": "#2980b9" },
 
     { "type": "image_picker", "id": "slide_4_img", "label": "Slide 4 Image" },
     { "type": "text", "id": "slide_4_text", "label": "Slide 4 Title", "default": "Slide 4" },
+    { "type": "color", "id": "slide_4_color_1", "label": "Slide 4 Gradient Color 1", "default": "#f39c12" },
+    { "type": "color", "id": "slide_4_color_2", "label": "Slide 4 Gradient Color 2", "default": "#e67e22" },
 
     { "type": "image_picker", "id": "slide_5_img", "label": "Slide 5 Image" },
     { "type": "text", "id": "slide_5_text", "label": "Slide 5 Title", "default": "Slide 5" },
+    { "type": "color", "id": "slide_5_color_1", "label": "Slide 5 Gradient Color 1", "default": "#34495e" },
+    { "type": "color", "id": "slide_5_color_2", "label": "Slide 5 Gradient Color 2", "default": "#2c3e50" },
 
     { "type": "image_picker", "id": "slide_6_img", "label": "Slide 6 Image" },
-    { "type": "text", "id": "slide_6_text", "label": "Slide 6 Title", "default": "Slide 6" }
+    { "type": "text", "id": "slide_6_text", "label": "Slide 6 Title", "default": "Slide 6" },
+    { "type": "color", "id": "slide_6_color_1", "label": "Slide 6 Gradient Color 1", "default": "#e74c3c" },
+    { "type": "color", "id": "slide_6_color_2", "label": "Slide 6 Gradient Color 2", "default": "#c0392b" }
   ],
   "presets": [
     {
@@ -69,93 +81,93 @@
     }
   }
 
-.ew-gsap-section .slide {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  backface-visibility: hidden;
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .ew-gsap-section .slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.ew-gsap-section .slide-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+  .ew-gsap-section .slide-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
 
-.ew-gsap-section .slide-content img {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
-  object-position:center center;
-  z-index: 1;
-  position: relative;
-}
+  .ew-gsap-section .slide-content img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    object-position:center center;
+    z-index: 1;
+    position: relative;
+  }
 
-.ew-gsap-section .slide-content .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: clamp(3rem, 6vw, 7rem);
-  text-align: center;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  z-index: 2;
-  pointer-events: none;
-}
-
-  /* Gradient backgrounds per slide index (only shown if no image is set) */
-  .gradient-1 { background: linear-gradient(135deg, #2ecc71, #27ae60); }
-  .gradient-2 { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
-  .gradient-3 { background: linear-gradient(135deg, #3498db, #2980b9); }
-  .gradient-4 { background: linear-gradient(135deg, #f39c12, #e67e22); }
-  .gradient-5 { background: linear-gradient(135deg, #34495e, #2c3e50); }
-  .gradient-6 { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+  .ew-gsap-section .slide-content .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(3rem, 6vw, 7rem);
+    text-align: center;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    pointer-events: none;
+  }
 </style>
-
 
 <div class="ew-gsap-section">
   <div class="panel"></div>
   <div class="wrapper center">
-<div class="slider">
-  {% for i in (1..6) %}
-    {% capture img_key %}slide_{{ i }}_img{% endcapture %}
-    {% capture text_key %}slide_{{ i }}_text{% endcapture %}
-    {% assign image_obj = section.settings[img_key] %}
-    {% assign text = section.settings[text_key] %}
+    <div class="slider">
+      {% for i in (1..6) %}
+        {% capture img_key %}slide_{{ i }}_img{% endcapture %}
+        {% capture text_key %}slide_{{ i }}_text{% endcapture %}
+        {% assign image_obj = section.settings[img_key] %}
+        {% assign text = section.settings[text_key] %}
 
-    <div class="slide {% unless image_obj %}gradient-{{ i }}{% endunless %}">
-      <div class="slide-content">
-        {% if image_obj %}
-          {{ image_obj | image_url: width: 800 | image_tag:
-            class: '',
-            alt: text,
-            width: image_obj.width,
-            height: image_obj.height,
-            sizes: '(min-width: 768px) 420px, 100vw',
-            widths: '300, 420, 600, 800'
-          }}
-        {% endif %}
-        <div class="title">{{ text | truncate: 25, '' }}</div>
-      </div>
+        <div class="slide">
+          <div class="slide-content">
+            {% if image_obj %}
+              {{ image_obj | image_url: width: 800 | image_tag:
+                class: '',
+                alt: text,
+                width: image_obj.width,
+                height: image_obj.height,
+                sizes: '(min-width: 768px) 420px, 100vw',
+                widths: '300, 420, 600, 800'
+              }}
+            {% endif %}
+            <div class="title">{{ text | truncate: 25, '' }}</div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
-</div>
-
-
-
   </div>
   <div class="panel"></div>
 </div>
+
+<!-- Dynamic gradient array from user settings -->
+<script>
+  window.ewGsapGradients = [
+    "linear-gradient(135deg, {{ section.settings.slide_2_color_1 }}, {{ section.settings.slide_2_color_2 }})",
+    "linear-gradient(135deg, {{ section.settings.slide_3_color_1 }}, {{ section.settings.slide_3_color_2 }})",
+    "linear-gradient(135deg, {{ section.settings.slide_4_color_1 }}, {{ section.settings.slide_4_color_2 }})",
+    "linear-gradient(135deg, {{ section.settings.slide_5_color_1 }}, {{ section.settings.slide_5_color_2 }})",
+    "linear-gradient(135deg, {{ section.settings.slide_6_color_1 }}, {{ section.settings.slide_6_color_2 }})",
+    "linear-gradient(135deg, {{ section.settings.slide_1_color_1 }}, {{ section.settings.slide_1_color_2 }})"
+  ];
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -168,18 +180,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const slides = gsap.utils.toArray('.ew-gsap-section .slide');
   const transitionTime = 2;
+  const bgGradients = window.ewGsapGradients || [];
 
-  // Gradient backgrounds (shifted by 1)
-  const bgGradients = [
-    'linear-gradient(135deg, #9b59b6, #8e44ad)', // for slide 1
-    'linear-gradient(135deg, #3498db, #2980b9)', // for slide 2
-    'linear-gradient(135deg, #f39c12, #e67e22)', // for slide 3
-    'linear-gradient(135deg, #34495e, #2c3e50)', // for slide 4
-    'linear-gradient(135deg, #e74c3c, #c0392b)', // for slide 5
-    'linear-gradient(135deg, #2ecc71, #27ae60)'  // for slide 6
-  ];
-
-  // Set initial background to match slide 1’s offset (i.e., gradient for slide 2)
+  // Initial background
   gsap.set('.ew-gsap-section', {
     background: bgGradients[0]
   });
@@ -194,21 +197,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Initial setup
   gsap.set(slides, {
     rotationX: (i) => (i ? -90 : 0),
     opacity: (i) => (i ? 0 : 1),
     transformOrigin: 'center center -150px'
   });
 
-  // Animate through each slide
   slides.forEach((slide, i) => {
     const nextSlide = slides[i + 1];
     if (!nextSlide) return;
-
     const nextBgIndex = (i + 1) % bgGradients.length;
 
-    // Slide out: rotate and fade
     tl.to(slide, {
       rotationX: 90,
       opacity: 0,
@@ -217,14 +216,12 @@ document.addEventListener('DOMContentLoaded', function () {
       onComplete: () => gsap.set(slide, { rotationX: -90 })
     });
 
-    // Change background gradient smoothly (offset)
     tl.to('.ew-gsap-section', {
       background: bgGradients[nextBgIndex],
       duration: transitionTime,
       ease: "power2.inOut"
     }, "<");
 
-    // Slide in: rotate and fade in next
     tl.to(nextSlide, {
       rotationX: 0,
       opacity: 1,
@@ -233,9 +230,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, "<");
   });
 
-  // Hold last slide
   tl.to({}, { duration: 1 });
 });
 </script>
-
-
