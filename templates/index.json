@@ -65,6 +65,20 @@
         "accessibility_info": "Slideshow about our brand"
       }
     },
+    "ew_gsap_section_9yHaeq": {
+      "type": "ew-gsap-section",
+      "name": "GSAP Image Slider",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "slide_1_img": "shopify://shop_images/welcome-to-my-business.jpg",
+        "slide_1_text": "Slide 1",
+        "slide_2_text": "Slide 2",
+        "slide_3_text": "Slide 3",
+        "slide_4_text": "Slide 4",
+        "slide_5_text": "Slide 5",
+        "slide_6_text": "Slide 6"
+      }
+    },
     "rich_text": {
       "type": "rich-text",
       "blocks": {
@@ -227,6 +241,7 @@
   },
   "order": [
     "slideshow_GCMhHJ",
+    "ew_gsap_section_9yHaeq",
     "rich_text",
     "featured_collection",
     "collage",
