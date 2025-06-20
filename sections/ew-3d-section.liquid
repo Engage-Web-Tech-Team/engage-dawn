@@ -78,18 +78,17 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  // Diagnostic console logs
+window.addEventListener('load', function () {
   console.log("THREE loaded?", typeof THREE !== 'undefined');
-  console.log("GLTFLoader loaded?", typeof THREE?.GLTFLoader !== 'undefined');
-  console.log("Three.js version:", THREE?.REVISION);
+  console.log("GLTFLoader loaded?", typeof THREE.GLTFLoader !== 'undefined');
+  console.log("Three.js version:", THREE.REVISION);
 
-  // Only run if both THREE and GLTFLoader are available
   if (typeof THREE === 'undefined' || typeof THREE.GLTFLoader === 'undefined') {
     console.warn('❌ Three.js or GLTFLoader is not loaded.');
     return;
   }
 
+  // Your original model + GSAP animation code here
   const canvas = document.getElementById('three-canvas');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       model.rotation.y = Math.PI;
 
-      // Entrance animation
+      // Animate entrance
       gsap.fromTo(model.rotation, 
         { y: model.rotation.y - 0.5 },
         { y: model.rotation.y, duration: 2, ease: 'power3.out' }
@@ -133,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
         delay: 2
       });
 
-      // Rotation animation
+      // Animate loop
       function animate() {
         requestAnimationFrame(animate);
         model.rotation.y += 0.002;
@@ -147,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   );
 
-  // Responsive resize
+  // Responsive canvas
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -155,4 +154,5 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+
 
