@@ -9,73 +9,47 @@
  */
 {
   "sections": {
-    "slideshow_GCMhHJ": {
-      "type": "slideshow",
-      "blocks": {
-        "slide_JLAyCa": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/900_59705168-0ba3-474f-8b20-51c8109375e1.jpg",
-            "image_overlay_opacity": 30,
-            "heading": "<strong>Freelance Writing for Business Diploma Course</strong>",
-            "heading_size": "h0",
-            "subheading": "Are you looking to earn money writing from home?",
-            "button_label": "Find out more",
-            "link": "shopify://products/clothing-item-1",
-            "button_style_secondary": false,
-            "show_text_box": true,
-            "box_align": "middle-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-3"
-          }
-        },
-        "slide_Amc7qV": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/800_67fafdd0-238c-4761-b4f5-b36326656ad9.jpg",
-            "image_overlay_opacity": 0,
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": true,
-            "box_align": "middle-right",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": ""
-          }
-        }
-      },
-      "block_order": [
-        "slide_JLAyCa",
-        "slide_Amc7qV"
-      ],
-      "name": "t:sections.slideshow.presets.name",
-      "settings": {
-        "layout": "full_bleed",
-        "slide_height": "medium",
-        "slider_visual": "counter",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "ambient",
-        "show_text_below": true,
-        "accessibility_info": "Slideshow about our brand"
-      }
-    },
-    "ew_gsap_section_PVFRBm": {
+    "ew_gsap_section_FLxkWD": {
       "type": "ew-gsap-section",
-      "name": "GSAP Scroll Slider",
+      "name": "GSAP Image Slider",
       "settings": {
-        "section_bg_color": "#414040",
-        "slide_1": "Slide 1",
-        "slide_2": "Slide 2",
-        "slide_3": "Slide 3",
-        "slide_4": "Slide 4",
-        "slide_5": "Slide 5",
-        "slide_6": "Slide 6"
+        "section_bg_color": "#242833",
+        "slide_1_img": "shopify://shop_images/H20_BLA_IMG1.webp",
+        "slide_1_text": "PRODUCT",
+        "slide_1_link": "shopify://products/clothing-item-1",
+        "slide_1_cta": "View Product",
+        "slide_1_color_1": "#2ecc71",
+        "slide_1_color_2": "#27ae60",
+        "slide_2_img": "shopify://shop_images/1_iconANC_realtree-apx-black.webp",
+        "slide_2_text": "PRODUCT",
+        "slide_2_link": "shopify://products/clothing-item-2",
+        "slide_2_cta": "View Product",
+        "slide_2_color_1": "#9b59b6",
+        "slide_2_color_2": "#8e44ad",
+        "slide_3_img": "shopify://shop_images/25B_Icon_ANC_S5IOW-T014_All_Love_BuyBox_1_1756dffd-cb3d-42cc-b040-a55caa71ae54.webp",
+        "slide_3_text": "PRODUCT",
+        "slide_3_link": "shopify://products/clothing-item-3",
+        "slide_3_cta": "View Product",
+        "slide_3_color_1": "#3498db",
+        "slide_3_color_2": "#2980b9",
+        "slide_4_img": "shopify://shop_images/headphones-png-5.png",
+        "slide_4_text": "PRODUCT",
+        "slide_4_link": "shopify://products/clothing-item-4",
+        "slide_4_cta": "View Product",
+        "slide_4_color_1": "#f39c12",
+        "slide_4_color_2": "#e67e22",
+        "slide_5_img": "shopify://shop_images/cq5dam.web.1920.1920.png",
+        "slide_5_text": "PRODUCT",
+        "slide_5_link": "shopify://products/clothing-item-5",
+        "slide_5_cta": "View Product",
+        "slide_5_color_1": "#34495e",
+        "slide_5_color_2": "#2c3e50",
+        "slide_6_img": "shopify://shop_images/Wireless-Headphone-PNG-HD-Quality.png",
+        "slide_6_text": "PRODUCT",
+        "slide_6_link": "shopify://products/clothing-item-6",
+        "slide_6_cta": "View Product",
+        "slide_6_color_1": "#dae73c",
+        "slide_6_color_2": "#b6b413"
       }
     },
     "rich_text": {
@@ -236,16 +210,44 @@
       "settings": {
         "line_color": "#334fb4"
       }
+    },
+    "175042345272e3149a": {
+      "type": "apps",
+      "blocks": {
+        "essential_grid_gallery_app_block_qY9jkH": {
+          "type": "shopify://apps/essential-grid-gallery/blocks/app-block/b252af1e-c43a-4272-b19c-e87bc447c686",
+          "settings": {
+            "eg_grid_metakey": 1,
+            "eg_grid_dynamic_metakey": "",
+            "eg_grid_heading": "",
+            "eg_grid_sub_heading": "",
+            "eg_grid_heading_size": 30,
+            "eg_grid_sub_heading_size": 15,
+            "eg_grid_heading_alignment": "center",
+            "eg_grid_sec_back_color": "",
+            "eg_grid_sec_front_color": "",
+            "eg_grid_sec_sub_heading_color": "",
+            "eg_grid_sec_pad_top": 0,
+            "eg_grid_sec_pad_bot": 0
+          }
+        }
+      },
+      "block_order": [
+        "essential_grid_gallery_app_block_qY9jkH"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
-    "slideshow_GCMhHJ",
-    "ew_gsap_section_PVFRBm",
+    "ew_gsap_section_FLxkWD",
     "rich_text",
     "featured_collection",
     "collage",
     "video",
     "featured_blog_JWGbbt",
-    "timeline_section_CxJkk9"
+    "timeline_section_CxJkk9",
+    "175042345272e3149a"
   ]
 }
