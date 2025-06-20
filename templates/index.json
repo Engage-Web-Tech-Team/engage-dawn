@@ -9,13 +9,6 @@
  */
 {
   "sections": {
-    "ew_3d_section_YwFPWJ": {
-      "type": "ew-3d-section",
-      "name": "3D Hero Section",
-      "settings": {
-        "section_bg_color": "#000000"
-      }
-    },
     "ew_gsap_section_FLxkWD": {
       "type": "ew-gsap-section",
       "name": "GSAP Image Slider",
@@ -248,7 +241,6 @@
     }
   },
   "order": [
-    "ew_3d_section_YwFPWJ",
     "ew_gsap_section_FLxkWD",
     "rich_text",
     "featured_collection",
