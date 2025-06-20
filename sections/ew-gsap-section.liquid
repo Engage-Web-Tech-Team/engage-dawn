@@ -198,7 +198,7 @@
   }
 </style>
 
-<div class="ew-gsap-section">
+<div class="ew-gsap-section" style="margin-top:150vh;">
   <div class="panel"></div>
   <div class="wrapper center">
     <div class="slider">
@@ -272,7 +272,7 @@
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.ew-gsap-section .wrapper',
-        start: 'top top',
+        start: 'top bottom',
         end: '+=' + slides.length * 200,
         pin: true,
         scrub: 1.5,
