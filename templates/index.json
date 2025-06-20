@@ -70,17 +70,17 @@
       "name": "GSAP Image Slider",
       "settings": {
         "section_bg_color": "#242833",
-        "slide_1_img": "shopify://shop_images/gabew-logo.png",
+        "slide_1_img": "shopify://shop_images/H20_BLA_IMG1.webp",
         "slide_1_text": "Slide 1",
-        "slide_2_img": "shopify://shop_images/gabew-logo-white.png",
+        "slide_2_img": "shopify://shop_images/black-wireless-headphones-isolated-on-transparent-background-ai-generated-png.webp",
         "slide_2_text": "Slide 2",
-        "slide_3_img": "shopify://shop_images/600_c23b5468-48a0-4e14-8370-96f4767c4a2a.jpg",
+        "slide_3_img": "shopify://shop_images/25B_Icon_ANC_S5IOW-T014_All_Love_BuyBox_1_1756dffd-cb3d-42cc-b040-a55caa71ae54.webp",
         "slide_3_text": "Slide 3",
-        "slide_4_img": "shopify://shop_images/welcome-to-my-business.jpg",
+        "slide_4_img": "shopify://shop_images/headphones-png-5.png",
         "slide_4_text": "Slide 4",
-        "slide_5_img": "shopify://shop_images/600_d98f51de-157d-4c71-b866-63f14aef4ff0.jpg",
+        "slide_5_img": "shopify://shop_images/cq5dam.web.1920.1920.png",
         "slide_5_text": "Slide 5",
-        "slide_6_img": "shopify://shop_images/600_d8e3a543-5f58-4994-b098-31b6127e7708.jpg",
+        "slide_6_img": "shopify://shop_images/pngimg.com_-_headphones_PNG101965.png",
         "slide_6_text": "Slide 6"
       }
     },
