@@ -79,9 +79,14 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Only run if three.js and GLTFLoader are loaded
+  // Diagnostic console logs
+  console.log("THREE loaded?", typeof THREE !== 'undefined');
+  console.log("GLTFLoader loaded?", typeof THREE?.GLTFLoader !== 'undefined');
+  console.log("Three.js version:", THREE?.REVISION);
+
+  // Only run if both THREE and GLTFLoader are available
   if (typeof THREE === 'undefined' || typeof THREE.GLTFLoader === 'undefined') {
-    console.warn('Three.js or GLTFLoader is not loaded.');
+    console.warn('❌ Three.js or GLTFLoader is not loaded.');
     return;
   }
 
@@ -106,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       model.rotation.y = Math.PI;
 
-      // Animate entrance
+      // Entrance animation
       gsap.fromTo(model.rotation, 
         { y: model.rotation.y - 0.5 },
         { y: model.rotation.y, duration: 2, ease: 'power3.out' }
@@ -128,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         delay: 2
       });
 
-      // Animate loop
+      // Rotation animation
       function animate() {
         requestAnimationFrame(animate);
         model.rotation.y += 0.002;
@@ -142,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   );
 
-  // Responsive canvas
+  // Responsive resize
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -150,3 +155,4 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+
