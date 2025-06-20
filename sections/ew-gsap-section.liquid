@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "GSAP Scroll Image + Title Slider",
+  "name": "GSAP Scroll Slider",
   "settings": [
     {
       "type": "color",
@@ -8,28 +8,16 @@
       "label": "Section Background Color",
       "default": "#ffffff"
     },
-
-    { "type": "image_picker", "id": "slide_1_img", "label": "Slide 1 Image" },
-    { "type": "text", "id": "slide_1_text", "label": "Slide 1 Title", "default": "Slide 1" },
-
-    { "type": "image_picker", "id": "slide_2_img", "label": "Slide 2 Image" },
-    { "type": "text", "id": "slide_2_text", "label": "Slide 2 Title", "default": "Slide 2" },
-
-    { "type": "image_picker", "id": "slide_3_img", "label": "Slide 3 Image" },
-    { "type": "text", "id": "slide_3_text", "label": "Slide 3 Title", "default": "Slide 3" },
-
-    { "type": "image_picker", "id": "slide_4_img", "label": "Slide 4 Image" },
-    { "type": "text", "id": "slide_4_text", "label": "Slide 4 Title", "default": "Slide 4" },
-
-    { "type": "image_picker", "id": "slide_5_img", "label": "Slide 5 Image" },
-    { "type": "text", "id": "slide_5_text", "label": "Slide 5 Title", "default": "Slide 5" },
-
-    { "type": "image_picker", "id": "slide_6_img", "label": "Slide 6 Image" },
-    { "type": "text", "id": "slide_6_text", "label": "Slide 6 Title", "default": "Slide 6" }
+    { "type": "text", "id": "slide_1", "label": "Slide 1 Text", "default": "Slide 1" },
+    { "type": "text", "id": "slide_2", "label": "Slide 2 Text", "default": "Slide 2" },
+    { "type": "text", "id": "slide_3", "label": "Slide 3 Text", "default": "Slide 3" },
+    { "type": "text", "id": "slide_4", "label": "Slide 4 Text", "default": "Slide 4" },
+    { "type": "text", "id": "slide_5", "label": "Slide 5 Text", "default": "Slide 5" },
+    { "type": "text", "id": "slide_6", "label": "Slide 6 Text", "default": "Slide 6" }
   ],
   "presets": [
     {
-      "name": "GSAP Image + Title Slider"
+      "name": "GSAP Scroll Slider"
     }
   ]
 }
@@ -61,11 +49,15 @@
     perspective: 500px;
   }
 
-  @media (min-width: 768px) {
-    .ew-gsap-section .slider {
-      width: 420px;
-      height: 420px;
-    }
+  .ew-gsap-section .slider:after {
+    position: absolute;
+    content: "";
+    top: -1rem;
+    bottom: -1rem;
+    right: -1rem;
+    left: -1rem;
+    outline: 1.5px dashed #ccc;
+    border-radius: 10px;
   }
 
   .ew-gsap-section .slide {
@@ -74,28 +66,43 @@
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     backface-visibility: hidden;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .ew-gsap-section .slide img {
-    max-width: 100%;
-    max-height: 70%;
-    object-fit: contain;
-  }
-
-  .ew-gsap-section .slide .title {
-    margin-top: 10px;
-    color: #fff;
+    color: white;
     font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border-radius: 10px;
+  }
+
+  .gradient-green {
+    background: linear-gradient(135deg, #32CD32, #228B22);
+  }
+
+  .gradient-purple {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  }
+
+  .gradient-blue {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+  }
+
+  .gradient-orange {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+  }
+
+  .gradient-blue-dark {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+  }
+
+  .gradient-red {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+  }
+
+  .ew-gsap-section .panel {
+    height: 50vh;
   }
 </style>
 
@@ -103,16 +110,12 @@
   <div class="panel"></div>
   <div class="wrapper center">
     <div class="slider">
-      {% for i in (1..6) %}
-        {% assign img = section.settings["slide_" | append: i | append: "_img"] %}
-        {% assign text = section.settings["slide_" | append: i | append: "_text"] %}
-        {% if img %}
-          <div class="slide">
-            <img src="{{ img | img_url: '600x600' }}" alt="Slide {{ i }}">
-            <div class="title">{{ text }}</div>
-          </div>
-        {% endif %}
-      {% endfor %}
+      <div class="slide center gradient-green">{{ section.settings.slide_1 }}</div>
+      <div class="slide center gradient-purple">{{ section.settings.slide_2 }}</div>
+      <div class="slide center gradient-blue">{{ section.settings.slide_3 }}</div>
+      <div class="slide center gradient-orange">{{ section.settings.slide_4 }}</div>
+      <div class="slide center gradient-blue-dark">{{ section.settings.slide_5 }}</div>
+      <div class="slide center gradient-red">{{ section.settings.slide_6 }}</div>
     </div>
   </div>
   <div class="panel"></div>
