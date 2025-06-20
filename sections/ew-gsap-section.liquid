@@ -116,19 +116,23 @@
     {% capture text_key %}slide_{{ i }}_text{% endcapture %}
     {% assign image_obj = section.settings[img_key] %}
     {% assign text = section.settings[text_key] %}
-    <div class="slide gradient-{{ i }}">
+
+    <div class="slide {% unless image_obj %}gradient-{{ i }}{% endunless %}">
       {% if image_obj != blank %}
         {{ image_obj | image_url: width: 800 | image_tag:
           class: '',
           alt: text,
           width: image_obj.width,
-          height: image_obj.height
+          height: image_obj.height,
+          sizes: '(min-width: 768px) 420px, 100vw',
+          widths: '300, 420, 600, 800'
         }}
       {% endif %}
       <div class="title">{{ text | truncate: 25, '' }}</div>
     </div>
   {% endfor %}
 </div>
+
 
   </div>
   <div class="panel"></div>
